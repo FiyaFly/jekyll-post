@@ -16,20 +16,6 @@
 	// 	"description": "Log output to console"
 	// }
 
-  "New Meeting": {
-		"prefix": "fnMeeting",
-		"body": [
-      "# $CURRENT_MONTH/$CURRENT_DATE/$CURRENT_YEAR $CURRENT_HOUR:00 - ${1:Topic}",
-      "",
-      "## Questions and Thoughts",
-      "",
-      "## Meeting",
-      "",
-      "$0",
-      ""
-    ],
-    "description": "Shortcut for a meeting"
-  },
   "New JekyllPage": {
     "prefix": "fnJekyllPage",
     "body": [
@@ -46,27 +32,4 @@
     ],
     "description": "Template for a new markdown page. Formatted for wikiJS 1.x"
   },
-  "New NotePage": {
-    "prefix": "fnPage",
-    "body": [
-      "<!-- TITLE: ${1:$TM_FILENAME_BASE} -->",
-      "<!-- SUBTITLE: Notes on ${1:$TM_FILENAME_BASE} -->",
-      "",
-      "# ${3:Overview}",
-      "",
-      "$0"
-    ],
-    "description": "Template for a new markdown page. Formatted for wikiJS 1.x"
-  },
-  "New Note Timestamp": {
-    "prefix": "fnNote",
-    "body": [
-      "# $CURRENT_MONTH/$CURRENT_DATE/$CURRENT_YEAR_SHORT $CURRENT_HOUR:$CURRENT_MINUTE - ${1:Topic}",
-      "",
-      "$0",
-      "",
-      ""
-    ],
-    "description": "Shortcut for a new note topic"
-  }
 }
