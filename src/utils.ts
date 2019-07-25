@@ -1,3 +1,4 @@
+
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
@@ -5,15 +6,17 @@ import * as fs from 'fs';
 export const postSnippet: string =
 `---
 layout: $\{1:post\}
-title: $\{2\}
-date: YYYY
+title: $\{TM_FILENAME_BASE /^ [0 - 9 -] * (.*) / $\{2:/capitalize\}/\}
+date: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE
+permalink: $TM_FILENAME_BASE.html
 category: $\{3\}
 author: $\{4\}
 tags: [$\{5\}]
 summary: $\{6\}
+sidebar: $\{7:main_sidebar\}
 ---
 
-$\{7\}`;
+$\{0\}`;
 
 var insertFrontMatter: boolean = false;
 
