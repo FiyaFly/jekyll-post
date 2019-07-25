@@ -6,7 +6,7 @@ import * as fs from 'fs';
 export const postSnippet: string =
 `---
 layout: $\{1:post\}
-title: $\{TM_FILENAME_BASE /^ [0 - 9 -] * (.*) / $\{2:/capitalize\}/\}
+title: newFileName
 date: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE
 permalink: $TM_FILENAME_BASE.html
 category: $\{3\}
@@ -38,7 +38,7 @@ createFile(dirName: string, newFileName: string): Promise<string> {
   }
   const templateName = '.post-template';
   const templatePath = path.resolve(folders[0].uri.fsPath, templateName);
-  const fileName = path.resolve(dirName, newFileName);
+  const fileName = path.resolve(dirName, newFileName,'.md');
   const templateExists: boolean = templatePath !== undefined &&
                                   fs.existsSync(templatePath);
   const fileExists: boolean = fs.existsSync(fileName);
@@ -72,7 +72,7 @@ openFile(fileName: string): Promise<vscode.TextEditor> {
 
 export async function
 getFileNameFromUser(): Promise<string> {
-  const defaultFileName = "new-post.md";
+  const defaultFileName = "new-post";
   let question = `What's the name of the new post?`;
 
   let filePath = await vscode.window.showInputBox({
@@ -108,3 +108,19 @@ addDateToFilename(fileName: string): string {
   var yyyy = today.getFullYear();
   return yyyy + '-' + mm + '-' + dd + '-' + fileName;
 }
+
+// My postSnippet, using my jekyll snippet as template:
+// export const postSnippet: string =
+//   `---
+// layout: $\{1:post\}
+// title: $\{TM_FILENAME_BASE /^ [0 - 9 -] * (.*) / $\{2:/capitalize\}/\}
+// date: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE
+// permalink: $TM_FILENAME_BASE.html
+// category: $\{3\}
+// author: $\{4\}
+// tags: [$\{5\}]
+// summary: $\{6\}
+// sidebar: $\{7:main_sidebar\}
+// ---
+//
+// $\{0\}`;
